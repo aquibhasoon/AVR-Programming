@@ -1,0 +1,198 @@
+
+interrupt_normal_mode.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  0000018c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000118  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  00800100  00800100  0000018c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000018c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001bc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000038  00000000  00000000  000001f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000006f5  00000000  00000000  00000230  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000064b  00000000  00000000  00000925  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000255  00000000  00000000  00000f70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000070  00000000  00000000  000011c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003ae  00000000  00000000  00001238  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000056  00000000  00000000  000015e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  0000163c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 48 00 	jmp	0x90	; 0x90 <__vector_16>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a2 30       	cpi	r26, 0x02	; 2
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 84 00 	call	0x108	; 0x108 <main>
+  88:	0c 94 8a 00 	jmp	0x114	; 0x114 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <__vector_16>:
+
+
+volatile uint16_t overflow_count =0;
+
+ISR (TIMER0_OVF_vect)
+{
+  90:	1f 92       	push	r1
+  92:	0f 92       	push	r0
+  94:	0f b6       	in	r0, 0x3f	; 63
+  96:	0f 92       	push	r0
+  98:	11 24       	eor	r1, r1
+  9a:	2f 93       	push	r18
+  9c:	8f 93       	push	r24
+  9e:	9f 93       	push	r25
+	overflow_count++;
+  a0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  a4:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+  a8:	01 96       	adiw	r24, 0x01	; 1
+  aa:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+  ae:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+	if (overflow_count>=977)
+  b2:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  b6:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+  ba:	81 3d       	cpi	r24, 0xD1	; 209
+  bc:	93 40       	sbci	r25, 0x03	; 3
+  be:	40 f0       	brcs	.+16     	; 0xd0 <__vector_16+0x40>
+	{
+		PORTB ^=(1<<PORTB5);
+  c0:	95 b1       	in	r25, 0x05	; 5
+  c2:	80 e2       	ldi	r24, 0x20	; 32
+  c4:	89 27       	eor	r24, r25
+  c6:	85 b9       	out	0x05, r24	; 5
+		overflow_count=0;
+  c8:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+  cc:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+	}
+}
+  d0:	9f 91       	pop	r25
+  d2:	8f 91       	pop	r24
+  d4:	2f 91       	pop	r18
+  d6:	0f 90       	pop	r0
+  d8:	0f be       	out	0x3f, r0	; 63
+  da:	0f 90       	pop	r0
+  dc:	1f 90       	pop	r1
+  de:	18 95       	reti
+
+000000e0 <GPIO_innit>:
+
+void GPIO_innit()
+{
+	DDRB |=(1<<DDB5);
+  e0:	84 b1       	in	r24, 0x04	; 4
+  e2:	80 62       	ori	r24, 0x20	; 32
+  e4:	84 b9       	out	0x04, r24	; 4
+	PORTB &= ~(1<<PORTB5);
+  e6:	85 b1       	in	r24, 0x05	; 5
+  e8:	8f 7d       	andi	r24, 0xDF	; 223
+  ea:	85 b9       	out	0x05, r24	; 5
+  ec:	08 95       	ret
+
+000000ee <interrupt_timer0_normal_innit>:
+}
+
+
+void interrupt_timer0_normal_innit()
+{
+	TCNT0 =0;
+  ee:	16 bc       	out	0x26, r1	; 38
+	TCCR0A &= ~((1<<WGM00)| (1<<WGM01));
+  f0:	84 b5       	in	r24, 0x24	; 36
+  f2:	8c 7f       	andi	r24, 0xFC	; 252
+  f4:	84 bd       	out	0x24, r24	; 36
+				  =256*4
+				  =1.024
+	So, Overflow for 1 sec=1000ms
+				for 1.024=1000/1.024=976.56~ 977
+	*/
+	TCCR0B |= ((1<<CS01)|(1<<CS00));
+  f6:	85 b5       	in	r24, 0x25	; 37
+  f8:	83 60       	ori	r24, 0x03	; 3
+  fa:	85 bd       	out	0x25, r24	; 37
+	TIMSK0 |= (1<<TOIE0);
+  fc:	ee e6       	ldi	r30, 0x6E	; 110
+  fe:	f0 e0       	ldi	r31, 0x00	; 0
+ 100:	80 81       	ld	r24, Z
+ 102:	81 60       	ori	r24, 0x01	; 1
+ 104:	80 83       	st	Z, r24
+ 106:	08 95       	ret
+
+00000108 <main>:
+	
+}
+
+int main(void)
+{
+	GPIO_innit();
+ 108:	0e 94 70 00 	call	0xe0	; 0xe0 <GPIO_innit>
+    interrupt_timer0_normal_innit();
+ 10c:	0e 94 77 00 	call	0xee	; 0xee <interrupt_timer0_normal_innit>
+	sei();
+ 110:	78 94       	sei
+ 112:	ff cf       	rjmp	.-2      	; 0x112 <main+0xa>
+
+00000114 <_exit>:
+ 114:	f8 94       	cli
+
+00000116 <__stop_program>:
+ 116:	ff cf       	rjmp	.-2      	; 0x116 <__stop_program>
