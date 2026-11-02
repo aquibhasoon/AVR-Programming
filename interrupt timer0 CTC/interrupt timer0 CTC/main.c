@@ -27,7 +27,7 @@ void interrupt_timer0_ctc_innit()
 {
 	TCNT0 =0;
 	TCCR0A |= (1<<WGM01);
-	/* 
+	/*  
 	Calculation
 	
 	F_cpu=16MHz
